@@ -42,36 +42,36 @@ extern "C" {
 /********************************************全局函数定义**********************************************/
 static void test_case_setup(void)
 {
-    printf("test case setup\r\n");
+    test_printf("test case setup\r\n");
 }
 
 static void test_case_teardown(void)
 {
-    printf("test case teardown\r\n");
+    test_printf("test case teardown\r\n");
 }
 
 static void test_suite_setup(void)
 {
-    printf("test suite setup\r\n");
+    test_printf("test suite setup\r\n");
 }
 
 static void test_suite_teardown(void)
 {
-    printf("test suite teardown\r\n");
+    test_printf("test suite teardown\r\n");
 }
 
 
 
 static void test1(void)
 {
-    printf("test1 test\r\n");
+    test_printf("test1 test\r\n");
 	EXPECT_EQ(0,1);
 }
 
 static void test2(void)
 {
 	int res = 1;
-    printf("test2 test\r\n");
+    test_printf("test2 test\r\n");
 	EXPECT_EQ(0,res);
 	EXPECT_NE(1,res);
 }

@@ -25,9 +25,7 @@ extern "C" {
 #endif // #ifdef __cplusplus
 
 /*********************************************头文件定义***********************************************/
-//#include "port/wind_config.h"
-//#include "port/wind_types.h"
-
+#include "test_port.h"
 
 
 /***********************************************宏定义*************************************************/
@@ -36,7 +34,7 @@ extern "C" {
 #define TEST_FAIL_LIST_CNT 100
 extern void test_suite_err(unsigned line);
 
-#define FAIL_EXPECT_OUT(x,y,than) printf("failed expection:FILE:%s,LINE:%d:which expected "#x" %s "#y"\r\n",__FILE__,__LINE__,than)
+#define FAIL_EXPECT_OUT(x,y,than) test_printf("failed expection:FILE:%s,LINE:%d:which expected "#x" %s "#y"\r\n",__FILE__,__LINE__,than)
 
 //断言x == y
 #define EXPECT_EQ(x,y) \
@@ -74,19 +72,19 @@ extern void test_suite_err(unsigned line);
 	{FAIL_EXPECT_OUT(x,y,">=");test_suite_err(__LINE__);}\
 	}while(0)
 
-//#define EXPECT_EQ(x,y) printf("FILE:%s,LINE:%d,expected %s,in fact %s\r\n",__FILE__,__LINE__,#x,#y)
+//#define EXPECT_EQ(x,y) test_printf("FILE:%s,LINE:%d,expected %s,in fact %s\r\n",__FILE__,__LINE__,#x,#y)
 /**********************************************枚举定义************************************************/
 #include <stdio.h>
-typedef unsigned int u32_t;
+typedef unsigned int ut_uint32_t;
 typedef int s32_t;
 #ifndef NULL
 #define NULL (void*)0
 #endif
-#define err_t u32_t
+#define err_t ut_uint32_t
 #define ERR_OK 0
 #define ERR_COMMAN 1
 #define WIND_ASSERT_RETURN(x,y)
-#define TEST_STDOUT printf
+#define TEST_STDOUT test_printf
 
 /*********************************************结构体定义***********************************************/
 //测试用例结构
@@ -102,7 +100,7 @@ typedef struct
 typedef struct __test_suite_s
 {
     char name[TEST_SUITE_NAME_LEN];
-    u32_t case_cnt;//测试用例的数量
+    ut_uint32_t case_cnt;//测试用例的数量
     test_case_s *tcase;
     //void (*init)(void);
     void (*setup)(void);
@@ -115,18 +113,18 @@ typedef struct __test_suite_global
 {
     test_suite_s *head;
     test_suite_s *tail;
-    u32_t cnt;
-}test_suite_global_s;
+    ut_uint32_t cnt;
+}suite_list_s;
 
 //用例执行结果统计信息
 typedef struct __test_stati_s
 {
-	u32_t tot_suite;
-	u32_t tot_case;
-	u32_t passed_suite;
-	u32_t failed_suite;
-	u32_t passed_case;
-	u32_t failed_case;
+	ut_uint32_t tot_suite;
+	ut_uint32_t tot_case;
+	ut_uint32_t passed_suite;
+	ut_uint32_t failed_suite;
+	ut_uint32_t passed_case;
+	ut_uint32_t failed_case;
 }test_stati_s;
 
 //执行失败的信息
@@ -134,7 +132,7 @@ typedef struct __fail_info_s
 {
 	test_suite_s *suite;
 	test_case_s *tcase;
-	u32_t line;
+	ut_uint32_t line;
 	struct __fail_info_s *next;
 }fail_info_s;
 
@@ -145,14 +143,14 @@ typedef struct __test_info_s
 	test_stati_s stat;
 	fail_info_s *faillist;
 	fail_info_s *lastfail;
-	u32_t failcnt;
+	ut_uint32_t failcnt;
 
 	test_suite_s *suite;
 	test_case_s *tcase;
-	u32_t case_err;
-	u32_t suite_err;
+	ut_uint32_t case_err;
+	ut_uint32_t suite_err;
 
-}test_info_s;
+}stati_info_s;
 
 /********************************************全局变量申明**********************************************/
 extern test_suite_s testsuite;
@@ -164,9 +162,7 @@ extern test_suite_s testsuite3;
 
 /********************************************全局函数申明**********************************************/
 err_t test_suite_register(test_suite_s *test_suite);
-//void test_framework_init(void);
-//void test_start(void);
-void test_framework_entry(void);
+void cut_test_start(char* testsite,char *testcase);
 
 
 #ifdef __cplusplus

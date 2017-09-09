@@ -3,6 +3,6 @@
 
 void main()
 {
-	test_framework_entry();
-	printf("hello world");
+	cut_test_start("all","all");
+	test_printf("hello world");
 }
