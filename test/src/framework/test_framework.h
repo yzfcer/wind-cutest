@@ -75,8 +75,7 @@ extern void test_suite_err(unsigned line);
 //#define EXPECT_EQ(x,y) test_printf("FILE:%s,LINE:%d,expected %s,in fact %s\r\n",__FILE__,__LINE__,#x,#y)
 /**********************************************枚举定义************************************************/
 #include <stdio.h>
-typedef unsigned int ut_uint32_t;
-typedef int s32_t;
+
 #ifndef NULL
 #define NULL (void*)0
 #endif
@@ -153,16 +152,12 @@ typedef struct __test_info_s
 }stati_info_s;
 
 /********************************************全局变量申明**********************************************/
-extern test_suite_s testsuite;
-extern test_suite_s testsuite1;
-extern test_suite_s testsuite2;
-extern test_suite_s testsuite3;
 
 
 
 /********************************************全局函数申明**********************************************/
 err_t test_suite_register(test_suite_s *test_suite);
-void cut_test_start(char* testsite,char *testcase);
+void cut_test_start(char* testsuite,char *testcase);
 
 
 #ifdef __cplusplus

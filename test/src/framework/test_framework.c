@@ -34,9 +34,9 @@ extern "C" {
 
 /********************************************内部函数定义*********************************************/
 
-static s32_t stringlenth(char *str)
+static ut_int32_t stringlenth(char *str)
 {
-	s32_t i;
+	ut_int32_t i;
 	for(i = 0;i < 65535;i ++)
 	{
 		if(str[i] == 0)
@@ -80,7 +80,6 @@ void stati_info_init(stati_info_s *sti)
 }
 void test_framework_init(void)
 {
-	
     stati_info_s *sti;
     suite_list_s *tsg = &suite_list;
 
@@ -273,9 +272,9 @@ void test_framework_summit(void)
 	}
 }
 
-s32_t do_match(char *str,char *filter,s32_t idx,s32_t len)
+ut_int32_t do_match(char *str,char *filter,ut_int32_t idx,ut_int32_t len)
 {
-	s32_t i;
+	ut_int32_t i;
 	for(i = 0;i < len;i ++)
 	{
 		if(str[i + idx] != filter[i])
@@ -284,11 +283,10 @@ s32_t do_match(char *str,char *filter,s32_t idx,s32_t len)
 	return i;
 }
 
-s32_t is_contain(char *str,char *filter,s32_t len1,s32_t len2)
+ut_int32_t is_contain(char *str,char *filter,ut_int32_t len1,ut_int32_t len2)
 {
-	s32_t i,j;
-	s32_t stringlen;
-	s32_t idx;
+	ut_int32_t i;
+	ut_int32_t idx;
 	if(len2 > len1)
 		return 0;
 	for(i = 0;i < len1;i++)
@@ -302,9 +300,9 @@ s32_t is_contain(char *str,char *filter,s32_t len1,s32_t len2)
 	return 0;
 }
 
-s32_t do_match_end(char *str,char *filter,s32_t len1,s32_t len2)
+ut_int32_t do_match_end(char *str,char *filter,ut_int32_t len1,ut_int32_t len2)
 {
-	s32_t i;
+	ut_int32_t i;
 	if(len2 > len1)
 		return 0;
 	for(i = 0;i < len2;i ++)
@@ -315,9 +313,9 @@ s32_t do_match_end(char *str,char *filter,s32_t len1,s32_t len2)
 	return 1;
 }
 
-s32_t do_match_head(char *str,char *filter,s32_t len1,s32_t len2)
+ut_int32_t do_match_head(char *str,char *filter,ut_int32_t len1,ut_int32_t len2)
 {
-	s32_t i;
+	ut_int32_t i;
 	if(len2 > len1)
 		return 0;
 	for(i = 0;i < len2;i ++)
@@ -328,10 +326,24 @@ s32_t do_match_head(char *str,char *filter,s32_t len1,s32_t len2)
 	return 1;
 }
 
-s32_t do_match_all(char *str,char *filter,s32_t len1,s32_t len2)
+
+ut_int32_t do_match_all(char *str,char *filter,ut_int32_t len1,ut_int32_t len2)
 {
-	s32_t i;
-	s32_t stringlen;
+	ut_int32_t i;
+	if(len2 != len1)
+		return 0;
+	for(i = 0;i < len2;i ++)
+	{
+		if(str[i] != filter[i])
+			return 0;
+	}
+	return 1;
+}
+
+
+ut_int32_t do_match_all(char *str,char *filter,ut_int32_t len1,ut_int32_t len2)
+{
+	ut_int32_t i;
 	if(len2 > len1)
 		return 0;
 	for(i = 0;i < len2;i ++)
@@ -341,9 +353,9 @@ s32_t do_match_all(char *str,char *filter,s32_t len1,s32_t len2)
 	}
 	return 1;
 }
-s32_t is_match_str(char *str,char *filter)
+ut_int32_t is_match_str(char *str,char *filter)
 {
-	s32_t len1,len2;
+	ut_int32_t len1,len2;
 	len1 = stringlenth(str);
 	len2 = stringlenth(filter);
 
@@ -361,12 +373,12 @@ s32_t is_match_str(char *str,char *filter)
 	}
 	else
 	{
-		return do_match_head(str,filter,len1,len2);
+		return do_match_all(str,filter,len1,len2);
 	}
 }
 void show_test_suites(void)
 {
-	s32_t i,j = 0;
+	ut_uint32_t i,j = 0;
 	test_suite_s *ts;
 	TEST_STDOUT("\r\nTest Suites List As Following:\r\n");
 	ts = suite_list.head;
@@ -392,9 +404,9 @@ static void execute_one_case(test_suite_s *ts,test_case_s *tc)
     
 }
 
-static void execute_one_suite(test_suite_s *ts)
+static void execute_one_suite(test_suite_s *ts,char *casefilter)
 {
-    int i;
+    ut_uint32_t i;
     test_case_s *tc;
 	stati_info_s *sti = &stati_info;
     sti->stat.tot_suite ++;
@@ -405,18 +417,17 @@ static void execute_one_suite(test_suite_s *ts)
     for(i = 0;i < ts->case_cnt;i ++)
     {
         tc = &ts->tcase[i];
-        execute_one_case(ts,tc);
+        if(is_match_str(tc->name,casefilter))
+            execute_one_case(ts,tc);
     }
     ts->teardown();
     test_suite_done();
     TEST_STDOUT("++++-----------------++++\r\n\r\n");
 }
 
-void execute_all_suites(void)
+void execute_all_suites(char* suitefilter,char *casefilter)
 {
-    ut_uint32_t i,j;
     test_suite_s *ts;
-    test_case_s *tc;
 	stati_info_s *sti;
 	sti = &stati_info;
     ts = suite_list.head;
@@ -424,7 +435,8 @@ void execute_all_suites(void)
     TEST_STDOUT("-------Test framework start-------\r\n");
 	while(ts)
     {
-        execute_one_suite(ts);
+        if(is_match_str(ts->name,suitefilter))
+            execute_one_suite(ts,casefilter);
         ts = ts->next;
     }
 	TEST_STDOUT("-------Test framework end-------\r\n");
@@ -432,13 +444,14 @@ void execute_all_suites(void)
 }
 
 
-void cut_test_start(char* testsite,char *testcase)
+void cut_test_start(char* suitefilter,char *casefilter)
 {
 	test_framework_init();
 	test_suite_register_all();
 	show_test_suites();
-	execute_all_suites();
+	execute_all_suites(suitefilter,casefilter);
 }
+
 #ifdef __cplusplus
 }
 #endif // #ifdef __cplusplus

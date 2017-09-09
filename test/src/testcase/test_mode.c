@@ -72,8 +72,8 @@ static void test2(void)
 {
 	int res = 1;
     test_printf("test2 test\r\n");
-	EXPECT_EQ(0,res);
-	EXPECT_NE(1,res);
+	EXPECT_EQ(1,res);
+	EXPECT_NE(0,res);
 }
 
 
