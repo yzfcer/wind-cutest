@@ -81,6 +81,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
+    <ClCompile Include="port\test_port.c" />
     <ClCompile Include="src\framework\test_framework.c" />
     <ClCompile Include="src\testcase\test_mode.c" />
     <ClCompile Include="src\testcase\test_mode1.c" />
