@@ -84,36 +84,36 @@ typedef struct __test_suite_global
 //用例执行结果统计信息
 typedef struct __test_stati_s
 {
-	ut_uint32_t tot_suite;
-	ut_uint32_t tot_case;
-	ut_uint32_t passed_suite;
-	ut_uint32_t failed_suite;
-	ut_uint32_t passed_case;
-	ut_uint32_t failed_case;
+    ut_uint32_t tot_suite;
+    ut_uint32_t tot_case;
+    ut_uint32_t passed_suite;
+    ut_uint32_t failed_suite;
+    ut_uint32_t passed_case;
+    ut_uint32_t failed_case;
 }test_stati_s;
 
 //执行失败的信息
 typedef struct __fail_info_s
 {
-	test_suite_s *suite;
-	test_case_s *tcase;
-	ut_uint32_t line;
-	struct __fail_info_s *next;
+    test_suite_s *suite;
+    test_case_s *tcase;
+    ut_uint32_t line;
+    struct __fail_info_s *next;
 }fail_info_s;
 
 
 
 typedef struct __test_info_s
 {
-	test_stati_s stat;
-	fail_info_s *faillist;
-	fail_info_s *lastfail;
-	ut_uint32_t failcnt;
+    test_stati_s stat;
+    fail_info_s *faillist;
+    fail_info_s *lastfail;
+    ut_uint32_t failcnt;
 
-	test_suite_s *suite;
-	test_case_s *tcase;
-	ut_uint32_t case_err;
-	ut_uint32_t suite_err;
+    test_suite_s *suite;
+    test_case_s *tcase;
+    ut_uint32_t case_err;
+    ut_uint32_t suite_err;
 }stati_info_s;
 
 /********************************************全局变量申明**********************************************/

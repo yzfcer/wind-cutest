@@ -54,7 +54,7 @@ CASE_TEARDOWN(Test1)
 CASE_FUNC(Test1)
 {
     test_printf("test1 test\r\n");
-	EXPECT_EQ(0,1);
+    EXPECT_EQ(0,1);
     EXPECT_GREATER(0,5);
 }
 

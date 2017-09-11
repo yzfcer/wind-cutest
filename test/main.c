@@ -4,6 +4,6 @@
 
 void main()
 {
-	cut_test_start("*","*");
-	system("pause");
+    cut_test_start("*","*");
+    system("pause");
 }

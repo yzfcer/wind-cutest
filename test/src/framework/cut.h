@@ -4,37 +4,37 @@
 
 //¶ÏÑÔx == y
 #define EXPECT_EQ(x,y) \
-	do{if((x) != (y)) \
+    do{if((x) != (y)) \
     {FAIL_EXPECT_OUT(x,y,"==");test_suite_err(__LINE__);}\
     }while(0)
 
 //¶ÏÑÔx != y
 #define EXPECT_NE(x,y) \
-	do{if((x) == (y)) \
+    do{if((x) == (y)) \
     {FAIL_EXPECT_OUT(x,y,"!=");test_suite_err(__LINE__);}\
     }while(0)
 
 //¶ÏÑÔx > y
 #define EXPECT_GREATER(x,y) \
-	do{if((x) <= (y)) \
+    do{if((x) <= (y)) \
     {FAIL_EXPECT_OUT(x,y,">");test_suite_err(__LINE__);}\
     }while(0)
 
 //¶ÏÑÔx < y
 #define EXPECT_SMALLER(x,y) \
-	do{if((x) <= (y)) \
+    do{if((x) <= (y)) \
     {FAIL_EXPECT_OUT(x,y,"<");test_suite_err(__LINE__);}\
     }while(0)
 
 //¶ÏÑÔx <= y
 #define EXPECT_NOT_GREATER(x,y) \
-	do{if((x) <= (y)) \
+    do{if((x) <= (y)) \
     {FAIL_EXPECT_OUT(x,y,"<=");test_suite_err(__LINE__);}\
     }while(0)
 
 //¶ÏÑÔx >= y
 #define EXPECT_NOT_SMALLER(x,y) \
-	do{if((x) <= (y)) \
+    do{if((x) <= (y)) \
     {FAIL_EXPECT_OUT(x,y,">=");test_suite_err(__LINE__);}\
     }while(0)
 
