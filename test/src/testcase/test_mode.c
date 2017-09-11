@@ -77,12 +77,12 @@ CASE_FUNC(Test2)
 }
 
 
-SUITE_SETUP(TestSuite1)
+SUITE_SETUP()
 {
     test_printf("test suite setup\r\n");
 }
 
-SUITE_TEARDOWN(TestSuite1)
+SUITE_TEARDOWN()
 {
     test_printf("test suite teardown\r\n");
 }

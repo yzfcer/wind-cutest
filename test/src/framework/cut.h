@@ -39,12 +39,12 @@
 
 
 
-#define SUITE_SETUP(ts)  static void suite_setup_##ts(void)
-#define SUITE_TEARDOWN(ts) static void suite_teardown_##ts(void)
+#define SUITE_SETUP()  static void suite_setup(void)
+#define SUITE_TEARDOWN() static void suite_teardown(void)
 
-#define CASE_SETUP(tc) static void case_setup_##tc(void)
-#define CASE_TEARDOWN(tc) static void case_teardown_##tc(void)
-#define CASE_FUNC(tc) static void case_func_##tc(void)
+#define CASE_SETUP(testcase) static void case_setup_##testcase(void)
+#define CASE_TEARDOWN(testcase) static void case_teardown_##testcase(void)
+#define CASE_FUNC(testcase) static void case_func_##testcase(void)
 
 #define TEST_CASE_START static test_case_s testcase[] = {
 #define TEST_CASE(tc) {#tc,case_setup_##tc,case_teardown_##tc,case_func_##tc},
@@ -53,8 +53,8 @@
 #define TEST_SUITE(ts) test_suite_s suite_##ts = {#ts,\
 sizeof(testcase)/sizeof(test_case_s),\
 testcase,\
-suite_setup_##ts,\
-suite_teardown_##ts,\
+suite_setup,\
+suite_teardown,\
 NULL};
     
 #define DECLARE_SUITE(ts) extern test_suite_s suite_##ts
