@@ -40,57 +40,57 @@ extern "C" {
 
 
 /********************************************全局函数定义**********************************************/
-case_setup(Test1)
+CASE_SETUP(Test1)
 {
     test_printf("Test1 setup\r\n");
 }
 
-case_teardown(Test1)
+CASE_TEARDOWN(Test1)
 {
     test_printf("Test1 teardown\r\n");
 }
-case_func(Test1)
+CASE_FUNC(Test1)
 {
     test_printf("Test1 test\r\n");
 }
 
 
-case_setup(Test2)
+CASE_SETUP(Test2)
 {
     test_printf("Test2 setup\r\n");
 }
 
-case_teardown(Test2)
+CASE_TEARDOWN(Test2)
 {
     test_printf("Test2 teardown\r\n");
 }
-case_func(Test2)
+CASE_FUNC(Test2)
 {
     test_printf("Test2 test\r\n");
 }
 
 
-case_setup(Test3)
+CASE_SETUP(Test3)
 {
     test_printf("Test3 setup\r\n");
 }
 
-case_teardown(Test3)
+CASE_TEARDOWN(Test3)
 {
     test_printf("Test3 teardown\r\n");
 }
-case_func(Test3)
+CASE_FUNC(Test3)
 {
     test_printf("Test3 test\r\n");
 }
 
 
-suite_setup(TestSuite2)
+SUITE_SETUP(TestSuite2)
 {
     test_printf("test suite setup\r\n");
 }
 
-suite_teardown(TestSuite2)
+SUITE_TEARDOWN(TestSuite2)
 {
     test_printf("test suite teardown\r\n");
 }

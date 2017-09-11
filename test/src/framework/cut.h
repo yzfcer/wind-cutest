@@ -39,12 +39,12 @@
 
 
 
-#define suite_setup(ts)  static void suite_setup_##ts(void)
-#define suite_teardown(ts) static void suite_teardown_##ts(void)
+#define SUITE_SETUP(ts)  static void suite_setup_##ts(void)
+#define SUITE_TEARDOWN(ts) static void suite_teardown_##ts(void)
 
-#define case_setup(tc) static void case_setup_##tc(void)
-#define case_teardown(tc) static void case_teardown_##tc(void)
-#define case_func(tc) static void case_func_##tc(void)
+#define CASE_SETUP(tc) static void case_setup_##tc(void)
+#define CASE_TEARDOWN(tc) static void case_teardown_##tc(void)
+#define CASE_FUNC(tc) static void case_func_##tc(void)
 
 #define TEST_CASE_START static test_case_s testcase[] = {
 #define TEST_CASE(tc) {#tc,case_setup_##tc,case_teardown_##tc,case_func_##tc},
