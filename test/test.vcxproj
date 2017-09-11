@@ -47,7 +47,7 @@
     <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\src\testcase;$(ProjectDir)\src\framework;$(ProjectDir)\port;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)\src\testcase;$(ProjectDir)\src\framework;$(ProjectDir)\src\port;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -81,15 +81,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
-    <ClCompile Include="port\test_port.c" />
     <ClCompile Include="src\framework\test_framework.c" />
+    <ClCompile Include="src\port\test_port.c" />
     <ClCompile Include="src\testcase\test_mode.c" />
     <ClCompile Include="src\testcase\test_mode1.c" />
-    <ClCompile Include="src\testcase\test_mode2.c" />
-    <ClCompile Include="src\testcase\test_mode3.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\framework\test_framework.h" />
+    <ClInclude Include="src\port\test_port.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

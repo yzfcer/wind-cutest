@@ -341,18 +341,7 @@ ut_int32_t do_match_all(char *str,char *filter,ut_int32_t len1,ut_int32_t len2)
 }
 
 
-ut_int32_t do_match_all(char *str,char *filter,ut_int32_t len1,ut_int32_t len2)
-{
-	ut_int32_t i;
-	if(len2 > len1)
-		return 0;
-	for(i = 0;i < len2;i ++)
-	{
-		if(str[len1 - len2 + i] != filter[i])
-			return 0;
-	}
-	return 1;
-}
+
 ut_int32_t is_match_str(char *str,char *filter)
 {
 	ut_int32_t len1,len2;

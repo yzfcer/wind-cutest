@@ -24,7 +24,7 @@ extern "C" {
 
 
 /*********************************************头文件定义***********************************************/
-#include "test_framework.h"
+#include "cut.h"
 
 
 /********************************************内部变量定义**********************************************/
@@ -40,61 +40,69 @@ extern "C" {
 
 
 /********************************************全局函数定义**********************************************/
-static void test_case_setup(void)
+case_setup(Test1)
 {
-    test_printf("test case setup\r\n");
+    test_printf("Test1 setup\r\n");
 }
 
-static void test_case_teardown(void)
+case_teardown(Test1)
 {
-    test_printf("test case teardown\r\n");
+    test_printf("Test1 teardown\r\n");
+}
+case_func(Test1)
+{
+    test_printf("Test1 test\r\n");
 }
 
-static void test_suite_setup(void)
+
+case_setup(Test2)
+{
+    test_printf("Test2 setup\r\n");
+}
+
+case_teardown(Test2)
+{
+    test_printf("Test2 teardown\r\n");
+}
+case_func(Test2)
+{
+    test_printf("Test2 test\r\n");
+}
+
+
+case_setup(Test3)
+{
+    test_printf("Test3 setup\r\n");
+}
+
+case_teardown(Test3)
+{
+    test_printf("Test3 teardown\r\n");
+}
+case_func(Test3)
+{
+    test_printf("Test3 test\r\n");
+}
+
+
+suite_setup(TestSuite2)
 {
     test_printf("test suite setup\r\n");
 }
 
-static void test_suite_teardown(void)
+suite_teardown(TestSuite2)
 {
     test_printf("test suite teardown\r\n");
 }
 
 
+TEST_CASE_START
+TEST_CASE(Test1)
+TEST_CASE(Test2)
+TEST_CASE(Test3)
+TEST_CASE_END
+TEST_SUITE(TestSuite2)
 
-static void test1(void)
-{
-    test_printf("test1 test\r\n");
-}
-
-static void test2(void)
-{
-    test_printf("test2 test\r\n");
-	EXPECT_GREATER(0,5);
-}
-
-static void test3(void)
-{
-    test_printf("test3 test\r\n");
-}
-
-static test_case_s testcase[] = 
-{
-    {"Test1",test_case_setup,test_case_teardown,test1},
-    {"Test2",test_case_setup,test_case_teardown,test2},
-	{"Test3",test_case_setup,test_case_teardown,test3}
-};
-
-
-test_suite_s testsuite1 = 
-{
-    "TestSuite2",
-    sizeof(testcase)/sizeof(test_case_s),
-    testcase,
-    test_suite_setup,
-    test_suite_teardown,
-    NULL
-};
 
 #ifdef __cplusplus
 }

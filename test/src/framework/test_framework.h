@@ -36,43 +36,9 @@ extern void test_suite_err(unsigned line);
 
 #define FAIL_EXPECT_OUT(x,y,than) test_printf("failed expection:FILE:%s,LINE:%d:which expected "#x" %s "#y"\r\n",__FILE__,__LINE__,than)
 
-//断言x == y
-#define EXPECT_EQ(x,y) \
-	do{if((x) != (y)) \
-	{FAIL_EXPECT_OUT(x,y,"==");test_suite_err(__LINE__);}\
-	}while(0)
-
-//断言x != y
-#define EXPECT_NE(x,y) \
-	do{if((x) == (y)) \
-	{FAIL_EXPECT_OUT(x,y,"!=");test_suite_err(__LINE__);}\
-	}while(0)
-
-//断言x > y
-#define EXPECT_GREATER(x,y) \
-	do{if((x) <= (y)) \
-	{FAIL_EXPECT_OUT(x,y,">");test_suite_err(__LINE__);}\
-	}while(0)
-
-//断言x < y
-#define EXPECT_SMALLER(x,y) \
-	do{if((x) <= (y)) \
-	{FAIL_EXPECT_OUT(x,y,"<");test_suite_err(__LINE__);}\
-	}while(0)
-
-//断言x <= y
-#define EXPECT_NOT_GREATER(x,y) \
-	do{if((x) <= (y)) \
-	{FAIL_EXPECT_OUT(x,y,"<=");test_suite_err(__LINE__);}\
-	}while(0)
-
-//断言x >= y
-#define EXPECT_NOT_SMALLER(x,y) \
-	do{if((x) <= (y)) \
-	{FAIL_EXPECT_OUT(x,y,">=");test_suite_err(__LINE__);}\
-	}while(0)
 
 //#define EXPECT_EQ(x,y) test_printf("FILE:%s,LINE:%d,expected %s,in fact %s\r\n",__FILE__,__LINE__,#x,#y)
+
 /**********************************************枚举定义************************************************/
 #include <stdio.h>
 
@@ -148,7 +114,6 @@ typedef struct __test_info_s
 	test_case_s *tcase;
 	ut_uint32_t case_err;
 	ut_uint32_t suite_err;
-
 }stati_info_s;
 
 /********************************************全局变量申明**********************************************/
@@ -157,6 +122,7 @@ typedef struct __test_info_s
 
 /********************************************全局函数申明**********************************************/
 err_t test_suite_register(test_suite_s *test_suite);
+void show_test_suites(void);
 void cut_test_start(char* testsuite,char *testcase);
 
 
