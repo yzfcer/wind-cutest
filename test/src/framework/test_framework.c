@@ -45,6 +45,16 @@ static ut_int32_t stringlenth(char *str)
     return i;
 }
 
+ut_int32_t stringcmp(const char *cs,const char *ct)
+{
+    char __res;
+    while (1) {
+        if ((__res = (char)(*cs - *ct++)) != 0 || !*cs++)
+            break;
+    }
+    return __res;
+}
+
 /********************************************全局变量定义**********************************************/
 suite_list_s suite_list;
 stati_info_s stati_info;
