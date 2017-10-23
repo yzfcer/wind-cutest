@@ -34,7 +34,7 @@ extern "C" {
 
 /********************************************内部函数定义*********************************************/
 
-static ut_int32_t stringlenth(char *str)
+ut_int32_t stringlenth(char *str)
 {
     ut_int32_t i;
     for(i = 0;i < 65535;i ++)

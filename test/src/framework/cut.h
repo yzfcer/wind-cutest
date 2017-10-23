@@ -39,7 +39,7 @@
     }while(0)
 
 //¶ÏÑÔ×Ö·û´®ÏàÍ¬
-#define EXPECT_NOT_SMALLER(x,y) \
+#define EXPECT_STR_EQ(x,y) \
     do{if(strintcmp((x),(y)) != 0) \
     {FAIL_EXPECT_OUT(x,y,"!=");test_suite_err(__LINE__);}\
     }while(0)
